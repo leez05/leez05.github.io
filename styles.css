@@ -280,6 +280,34 @@ ul {
     gap: 24px;
 }
 
+/* 空状态 */
+.works-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-mute);
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+}
+
+.works-empty i {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    opacity: 0.4;
+}
+
+.works-empty p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--text-soft);
+    margin-bottom: 8px;
+}
+
+.works-empty span {
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+}
+
 .work-card {
     position: relative;
     overflow: hidden;

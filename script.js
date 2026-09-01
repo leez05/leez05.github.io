@@ -19,45 +19,45 @@
  *   thumb: 'assets/my-photo-thumb.jpg'
  */
 const WORKS = [
+    // 空数组 — 在下面粘贴作品对象即可添加
+    //
     // ---------- 模板 1：图片作品 ----------
-    // 把 src / thumb 换成你的文件路径，如 'assets/photo1.jpg'
-    // 不需要就删掉这一整块（包括结尾的逗号）
-    {
-        type: 'image',
-        title: '作品标题',
-        desc: '一句话描述，留空可写 ""',
-        src: 'https://picsum.photos/seed/template-image/1600/1200',
-        thumb: 'https://picsum.photos/seed/template-image/800/600'
-        // span: 'big'  // 可选：'big' | 'mid' | 'small'，不加则按位置自动分配
-    },
-
+    // {
+    //     type: 'image',
+    //     title: '作品标题',
+    //     desc: '一句话描述，留空可写 ""',
+    //     src: 'assets/photo.jpg',        // 原图路径
+    //     thumb: 'assets/photo-thumb.jpg'  // 缩略图路径
+    //     // span: 'big'                  // 可选：'big' | 'mid' | 'small'
+    // },
+    //
     // ---------- 模板 2：本地视频作品 ----------
-    // thumb 是视频封面图（poster），可用播放器截图或一张相关图片
-    {
-        type: 'video',
-        title: '作品标题',
-        desc: '一句话描述，留空可写 ""',
-        src: 'assets/my-video.mp4',
-        thumb: 'assets/my-video-poster.jpg'
-        // span: 'mid'
-    },
+    // {
+    //     type: 'video',
+    //     title: '作品标题',
+    //     desc: '一句话描述，留空可写 ""',
+    //     src: 'assets/my-video.mp4',
+    //     thumb: 'assets/my-video-poster.jpg'
+    // },
 
-    // ---------- 模板 3：B 站嵌入视频 ----------
-    // 视频 > 100MB 时推荐用这种方式
-    // src 填 B 站嵌入链接：在 B 站视频页 → 分享 → 复制「嵌入代码」
-    //   <iframe src="//player.bilibili.com/player.php?bvid=BVxxxxxx&page=1" ...>
-    // 把 //player... 这段 URL 复制到下面的 src（建议加 https: 前缀）
+    // ---------- B 站嵌入视频：Nyota 泡泡玛特大广赛作品 ----------
     {
         type: 'embed',
-        title: 'B 站作品标题',
-        desc: '一句话描述，留空可写 ""',
-        src: 'https://player.bilibili.com/player.php?bvid=BV1AiWdzzE46&page=1&high_quality=1&autoplay=1',
-        thumb: 'https://picsum.photos/seed/bilibili-cover/800/600'
-        // span: 'mid'
+        title: 'Nyota 泡泡玛特大广赛作品',
+        desc: '',
+        src: 'https://player.bilibili.com/player.php?bvid=BV1AiWdzzE46&page=1&high_quality=1',
+        thumb: 'https://picsum.photos/seed/nyota-cover/800/600'
     }
 
-    // ---------- 添加更多作品 ----------
-    // 在上面复制任意一个模板，粘贴到这里之前（注意上一个对象结尾要有逗号）
+    // ---------- 模板 3：B 站嵌入视频 ----------
+    // 在 B 站视频页 → 分享 → 嵌入代码 → 复制 src 里的 URL（加 https: 前缀）
+    // {
+    //     type: 'embed',
+    //     title: '作品标题',
+    //     desc: '一句话描述，留空可写 ""',
+    //     src: 'https://player.bilibili.com/player.php?bvid=BVxxxxxxxxxx&page=1',
+    //     thumb: 'assets/bili-cover.jpg'
+    // }
 ];
 
 /* ---------- 渲染作品网格 ---------- */
@@ -77,6 +77,20 @@ function getFilteredList(filter) {
 function renderWorks(filter = 'all') {
     currentList = getFilteredList(filter);
     grid.innerHTML = '';
+
+    // 空状态
+    if (currentList.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'works-empty';
+        empty.innerHTML = `
+            <i class="fas fa-image"></i>
+            <p>作品准备中</p>
+            <span>在 script.js 的 WORKS 数组里添加你的作品</span>
+        `;
+        grid.appendChild(empty);
+        return;
+    }
+
     const frag = document.createDocumentFragment();
     currentList.forEach((origIdx, pos) => {
         const w = WORKS[origIdx];
@@ -268,8 +282,9 @@ function renderLightbox() {
         iframe.setAttribute('allowfullscreen', 'true');
         iframe.setAttribute('scrolling', 'no');
         iframe.setAttribute('frameborder', '0');
-        iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation allow-forms allow-popups');
-        iframe.setAttribute('referrer', 'no-referrer');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen');
+        iframe.setAttribute('referrerPolicy', 'no-referrer');
+        // 注意：不要加 sandbox，B 站播放器需要完整权限才能正常加载和播放
         el.appendChild(iframe);
     } else {
         el = document.createElement('img');
