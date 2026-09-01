@@ -47,6 +47,15 @@ const WORKS = [
         desc: '',
         src: 'https://player.bilibili.com/player.html?bvid=BV1AiWdzzE46&page=1&high_quality=1&danmaku=0',
         thumb: 'assets/nyota-cover.jpg',
+    },
+
+    // ---------- B 站嵌入视频：喷漆案例 ----------
+    {
+        type: 'embed',
+        title: '喷漆案例',
+        desc: '',
+        src: 'https://player.bilibili.com/player.html?bvid=BV11YWdzrEPy&page=1&high_quality=1&danmaku=0',
+        thumb: 'assets/paint-cover.jpg',
     }
 
     // ---------- 模板 3：B 站嵌入视频 ----------
