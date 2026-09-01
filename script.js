@@ -45,8 +45,8 @@ const WORKS = [
         type: 'embed',
         title: 'Nyota 泡泡玛特大广赛作品',
         desc: '',
-        src: 'https://player.bilibili.com/player.php?bvid=BV1AiWdzzE46&page=1&high_quality=1',
-        thumb: 'https://picsum.photos/seed/nyota-cover/800/600'
+        src: 'https://player.bilibili.com/player.html?bvid=BV1AiWdzzE46&page=1&high_quality=1&danmaku=0',
+        thumb: 'assets/nyota-cover.jpg',
     }
 
     // ---------- 模板 3：B 站嵌入视频 ----------
