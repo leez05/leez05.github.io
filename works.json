@@ -1,0 +1,72 @@
+[
+    {
+        "type": "embed",
+        "title": "Nyota 泡泡玛特大广赛作品",
+        "desc": "",
+        "src": "https://player.bilibili.com/player.html?bvid=BV1AiWdzzE46&page=1&high_quality=1&danmaku=0",
+        "thumb": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/nyota-cover.jpg"
+    },
+    {
+        "type": "embed",
+        "title": "喷漆案例",
+        "desc": "",
+        "src": "https://player.bilibili.com/player.html?bvid=BV11YWdzrEPy&page=1&high_quality=1&danmaku=0",
+        "thumb": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/paint-cover.jpg"
+    },
+    {
+        "type": "embed",
+        "title": "水性漆展示",
+        "desc": "",
+        "src": "https://player.bilibili.com/player.html?bvid=BV1ydtV6JE7u&page=1&high_quality=1&danmaku=0",
+        "thumb": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/waterpaint-cover.jpg"
+    },
+    {
+        "type": "video",
+        "title": "图书馆宣传",
+        "desc": "",
+        "src": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/图书馆宣传.mp4",
+        "thumb": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/图书馆宣传-cover.jpg"
+    },
+    {
+        "type": "video",
+        "title": "第四集",
+        "desc": "",
+        "src": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/第四集.mp4",
+        "thumb": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/第四集-cover.jpg"
+    },
+    {
+        "type": "video",
+        "title": "音响展示",
+        "desc": "",
+        "src": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/音响展示.mp4",
+        "thumb": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/音响展示-cover.jpg"
+    },
+    {
+        "type": "video",
+        "title": "收音机六代机第三期",
+        "desc": "",
+        "src": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/收音机六代机第三期.mp4",
+        "thumb": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/收音机六代机第三期-cover.jpg"
+    },
+    {
+        "type": "video",
+        "title": "贴福字",
+        "desc": "",
+        "src": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/贴福字.mp4",
+        "thumb": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/贴福字-cover.png"
+    },
+    {
+        "type": "video",
+        "title": "凯乐石青少年户外培训课程",
+        "desc": "",
+        "src": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/凯乐石青少年户外培训课程.mp4",
+        "thumb": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/凯乐石青少年户外培训课程-cover.png"
+    },
+    {
+        "type": "video",
+        "title": "调色练习",
+        "desc": "",
+        "src": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/调色练习.mp4",
+        "thumb": "https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/调色练习-cover.png"
+    }
+]

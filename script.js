@@ -3,71 +3,19 @@
    作品数据 + 网格渲染 + Lightbox 交互
    ============================================ */
 
-/**
- * 作品数据
- * ----------
- * 替换为你自己的素材：
- *   type: 'image' 或 'video'
- *   src:   原图 / 视频文件地址
- *   thumb: 网格缩略图（视频用 poster 封面图）
- *   title: 作品标题
- *   desc:  作品描述（Lightbox 中显示，可留空）
- *   span:  网格大小 'big' | 'mid' | 'small'（影响节奏，可省略）
- *
- * 本地素材示例：把图片放进 ./assets/，然后
- *   src: 'assets/my-photo.jpg'
- *   thumb: 'assets/my-photo-thumb.jpg'
- */
-const WORKS = [
-    // 空数组 — 在下面粘贴作品对象即可添加
-    //
-    // ---------- 模板 1：图片作品 ----------
-    // {
-    //     type: 'image',
-    //     title: '作品标题',
-    //     desc: '一句话描述，留空可写 ""',
-    //     src: 'assets/photo.jpg',        // 原图路径
-    //     thumb: 'assets/photo-thumb.jpg'  // 缩略图路径
-    //     // span: 'big'                  // 可选：'big' | 'mid' | 'small'
-    // },
-    //
-    // ---------- 模板 2：本地视频作品 ----------
-    // {
-    //     type: 'video',
-    //     title: '作品标题',
-    //     desc: '一句话描述，留空可写 ""',
-    //     src: 'assets/my-video.mp4',
-    //     thumb: 'assets/my-video-poster.jpg'
-    // },
+const WORKS_JSON_URL = 'https://leezsworks-1479415940.cos.ap-guangzhou.myqcloud.com/assets/works.json';
+let WORKS = [];
 
-    // ---------- B 站嵌入视频：Nyota 泡泡玛特大广赛作品 ----------
-    {
-        type: 'embed',
-        title: 'Nyota 泡泡玛特大广赛作品',
-        desc: '',
-        src: 'https://player.bilibili.com/player.html?bvid=BV1AiWdzzE46&page=1&high_quality=1&danmaku=0',
-        thumb: 'assets/nyota-cover.jpg',
-    },
-
-    // ---------- B 站嵌入视频：喷漆案例 ----------
-    {
-        type: 'embed',
-        title: '喷漆案例',
-        desc: '',
-        src: 'https://player.bilibili.com/player.html?bvid=BV11YWdzrEPy&page=1&high_quality=1&danmaku=0',
-        thumb: 'assets/paint-cover.jpg',
+async function loadWorks() {
+    try {
+        const res = await fetch(WORKS_JSON_URL);
+        if (!res.ok) throw new Error('Failed to load works.json');
+        WORKS = await res.json();
+    } catch (err) {
+        console.error('加载作品数据失败:', err);
+        WORKS = [];
     }
-
-    // ---------- 模板 3：B 站嵌入视频 ----------
-    // 在 B 站视频页 → 分享 → 嵌入代码 → 复制 src 里的 URL（加 https: 前缀）
-    // {
-    //     type: 'embed',
-    //     title: '作品标题',
-    //     desc: '一句话描述，留空可写 ""',
-    //     src: 'https://player.bilibili.com/player.php?bvid=BVxxxxxxxxxx&page=1',
-    //     thumb: 'assets/bili-cover.jpg'
-    // }
-];
+}
 
 /* ---------- 渲染作品网格 ---------- */
 const grid = document.getElementById('worksGrid');
@@ -80,7 +28,11 @@ let currentIndex = 0;
 
 function getFilteredList(filter) {
     return WORKS.map((w, i) => i)
-        .filter((i) => filter === 'all' || WORKS[i].type === filter);
+        .filter((i) => {
+            if (filter === 'all') return true;
+            if (filter === 'video') return WORKS[i].type === 'video' || WORKS[i].type === 'embed';
+            return WORKS[i].type === filter;
+        });
 }
 
 function renderWorks(filter = 'all') {
@@ -111,19 +63,12 @@ function renderWorks(filter = 'all') {
         // 媒体元素
         let media;
         if (w.type === 'video') {
-            media = document.createElement('video');
-            media.muted = true;
-            media.loop = true;
-            media.playsInline = true;
-            media.preload = 'metadata';
-            media.crossOrigin = 'anonymous';
-            media.poster = w.thumb;
-            const source = document.createElement('source');
-            source.src = w.src;
-            source.type = 'video/mp4';
-            media.appendChild(source);
+            // 本地视频：网格里显示封面 poster，不自动播放
+            media = document.createElement('img');
+            media.src = w.thumb;
+            media.alt = w.title;
+            media.loading = 'lazy';
         } else if (w.type === 'embed') {
-            // 嵌入式视频（B 站等）在网格里显示封面图，点击后打开 Lightbox 播放
             media = document.createElement('img');
             media.src = w.thumb;
             media.alt = w.title;
@@ -166,11 +111,11 @@ function renderWorks(filter = 'all') {
 
 /* ---------- 筛选 ---------- */
 function setupFilter() {
-    // 填充数量
+    // 填充数量（embed 也算视频）
     const counts = {
         all: WORKS.length,
         image: WORKS.filter((w) => w.type === 'image').length,
-        video: WORKS.filter((w) => w.type === 'video').length
+        video: WORKS.filter((w) => w.type === 'video' || w.type === 'embed').length
     };
     filterBar.querySelectorAll('.filter-btn').forEach((btn) => {
         const f = btn.dataset.filter;
@@ -341,7 +286,8 @@ function setupLightboxEvents() {
 }
 
 /* ---------- 初始化 ---------- */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadWorks();
     renderWorks();
     setupReveal();
     setupFilter();
