@@ -51,7 +51,7 @@ const WORKS = [
         type: 'embed',
         title: 'B 站作品标题',
         desc: '一句话描述，留空可写 ""',
-        src: 'https://player.bilibili.com/player.php?bvid=BV1xx411c7mD&page=1',
+        src: 'https://player.bilibili.com/player.php?bvid=BV1AiWdzzE46&page=1&high_quality=1&autoplay=1',
         thumb: 'https://picsum.photos/seed/bilibili-cover/800/600'
         // span: 'mid'
     }
