@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品集 · 李梓淮</title>
+    <meta name="description" content="李梓淮的视觉作品集 — 摄影与影像">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="#top" class="brand">李梓淮<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#works">作品</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 首屏 Hero -->
+    <header id="top" class="hero">
+        <div class="container hero-inner">
+            <p class="hero-kicker">PORTFOLIO · 2026</p>
+            <h1 class="hero-title">李梓淮</h1>
+            <p class="hero-tagline">视觉创作者 · 摄影 &amp; 影像</p>
+            <a href="#works" class="hero-scroll">
+                <span>查看作品</span>
+                <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- 作品网格 -->
+        <section id="works" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">作品集</h2>
+                    <p class="section-sub">摄影与影像的合集，点击任一作品可放大查看。</p>
+                </div>
+                <div class="filter-bar" id="filterBar" role="tablist">
+                    <button class="filter-btn is-active" data-filter="all" role="tab">全部 <span class="count"></span></button>
+                    <button class="filter-btn" data-filter="image" role="tab">照片 <span class="count"></span></button>
+                    <button class="filter-btn" data-filter="video" role="tab">视频 <span class="count"></span></button>
+                </div>
+                <div class="works-grid" id="worksGrid"></div>
+            </div>
+        </section>
+
+        <!-- 关于我 -->
+        <section id="about" class="section section-alt">
+            <div class="container about-inner">
+                <div class="about-photo">
+                    <img src="https://picsum.photos/seed/portrait/600/720" alt="李梓淮">
+                </div>
+                <div class="about-text">
+                    <p class="section-kicker">ABOUT</p>
+                    <h2 class="section-title">关于我</h2>
+                    <p>我是李梓淮，一名专注于影像与视觉表达的创作者。摄影是我观察世界的方式，影像是我讲故事的媒介。过去四年里，我穿行于城市与野外之间，用镜头记录光影、人与瞬间。</p>
+                    <p>我相信好的作品不止于好看，而是能让人停留、思考、共情。希望这个集子能让你看见我眼中的世界。</p>
+                    <ul class="skills">
+                        <li>人像摄影</li>
+                        <li>风光摄影</li>
+                        <li>短片剪辑</li>
+                        <li>调色</li>
+                        <li>Lightroom</li>
+                        <li>DaVinci Resolve</li>
+                        <li>After Effects</li>
+                        <li>视觉叙事</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系方式 -->
+        <section id="contact" class="section">
+            <div class="container contact-inner">
+                <p class="section-kicker">CONTACT</p>
+                <h2 class="section-title">一起做点什么</h2>
+                <p class="contact-sub">无论是合作拍摄、项目邀约，还是只是想聊聊影像，欢迎来信。</p>
+                <a href="mailto:hello@linshen.studio" class="contact-email">hello@linshen.studio</a>
+                <ul class="social-links">
+                    <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a></li>
+                    <li><a href="#" aria-label="Behance"><i class="fab fa-behance"></i><span>Behance</span></a></li>
+                    <li><a href="#" aria-label="Vimeo"><i class="fab fa-vimeo-v"></i><span>Vimeo</span></a></li>
+                    <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i><span>GitHub</span></a></li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 李梓淮 · All rights reserved.</p>
+            <p class="footer-meta">Built with HTML · CSS · JavaScript</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox 模态 -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+        <button class="lightbox-close" id="lightboxClose" aria-label="关闭">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="上一张">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="下一张">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-stage" id="lightboxStage"></div>
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
